@@ -1,0 +1,6 @@
+{
+  "name": "Richard",
+  "gender": "Male",
+  "product" : ["Blackberry","Samsung Note 8", "Nokia Edge"],
+  "country" : "United States of America"
+}

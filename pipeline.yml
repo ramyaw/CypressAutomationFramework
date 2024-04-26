@@ -1,0 +1,29 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: cypressautomation-pipeline
+  namespace: quality-engineering
+spec:
+  source:
+    contextDir: ./
+    sourceSecret:
+      name: bitbucketsecret
+    git:
+      ref: main
+      uri: ssh://git@github.com/hp-dcss/cypress-automation.git
+    type: Git
+  strategy:
+    env:
+      - name: BUILD_CONTEXT_DIR
+        value: ./
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: Jenkinsfile
+    type: JenkinsPipeline
+  triggers:
+    - github:
+        secret: ax4tpwn8hw4xt
+      type: GitHub
+    - generic:
+        secret: qadsd03ert49qj
+      type: Generic
+    - type: ConfigChange
